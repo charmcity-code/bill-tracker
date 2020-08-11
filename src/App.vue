@@ -14,7 +14,10 @@
         />
         <div class="container flex">
           <div class="w-1/2">
-            <BillsTable />
+            <BillsTable
+              :bills="bills"
+              v-on:triggerShowAddBill="triggerShowAddBill"
+            />
           </div>
           <div class="w-1/2">
             <Chart :bills="activeBills" />
@@ -26,6 +29,9 @@
 </template>
 
 <script>
+import Vue from "vue";
+Vue.use(require("vue-moment"));
+
 import AddCategory from "./components/AddCategory.vue";
 import AddBill from "./components/AddBill.vue";
 import NavBar from "./components/NavBar.vue";
@@ -47,7 +53,7 @@ export default {
       bills: [],
       categories: [],
       shouldShowAddCategory: false,
-      shouldShowAddBill: true,
+      shouldShowAddBill: false,
     };
   },
   components: {
@@ -61,6 +67,9 @@ export default {
     addBill(bill) {
       this.bills.push(bill);
       this.shouldShowAddBill = false;
+    },
+    triggerShowAddBill() {
+      this.shouldShowAddBill = true;
     },
     addCategory(category) {
       this.categories.push(category);
