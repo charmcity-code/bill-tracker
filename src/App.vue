@@ -23,11 +23,16 @@ import BillsTable from "./components/BillsTable.vue";
 
 export default {
   name: "app",
+  watch: {
+    categories() {
+      localStorage.setItem("categories", JSON.stringify(this.categories));
+    },
+  },
   data() {
     return {
       bills: [],
       categories: [],
-      shouldShowAddCategory: true,
+      shouldShowAddCategory: false,
     };
   },
   components: {
@@ -42,6 +47,15 @@ export default {
       this.categories.push(category);
       this.shouldShowAddCategory = false;
     },
+  },
+  mounted() {
+    if (localStorage.getItem("categories")) {
+      this.categories = JSON.parse(localStorage.getItem("categories"));
+    }
+
+    if (!this.categories.length) {
+      this.shouldShowAddCategory = true;
+    }
   },
 };
 </script>
