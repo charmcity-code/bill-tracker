@@ -1,5 +1,7 @@
 <template>
   <main>
+    <AddCategory v-if="shouldShowAddCategory" v-on:addCategory="addCategory" />
+    <div v-else />
     <NavBar />
     <div class="container flex">
       <div class="w-1/2">
@@ -13,7 +15,7 @@
 </template>
 
 <script>
-// import AddCategory from "./components/AddCategory.vue";
+import AddCategory from "./components/AddCategory.vue";
 // import AddBill from "./components/AddBill.vue";
 import NavBar from "./components/NavBar.vue";
 import Chart from "./components/Chart.vue";
@@ -21,12 +23,25 @@ import BillsTable from "./components/BillsTable.vue";
 
 export default {
   name: "app",
+  data() {
+    return {
+      bills: [],
+      categories: [],
+      shouldShowAddCategory: true,
+    };
+  },
   components: {
-    // AddCategory,
+    AddCategory,
     // AddBill,
     Chart,
     BillsTable,
     NavBar,
+  },
+  methods: {
+    addCategory(category) {
+      this.categories.push(category);
+      this.shouldShowAddCategory = false;
+    },
   },
 };
 </script>
