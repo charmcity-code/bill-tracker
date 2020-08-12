@@ -27,7 +27,7 @@
             v-model="amount"
           />
           <button
-            class="flex-no-shrink p-2 border-2 rounded bg-teal text-white border-teal hover:text-white hover:bg-teal"
+            class="flex-no-shrink p-2 border-2 rounded bg-teal-700 text-white border-teal hover:text-white hover:bg-teal-700"
             @click="handleClick"
           >
             Add
