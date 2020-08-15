@@ -36,10 +36,6 @@ const processBills = bills => {
   const months = last12Months();
   const monthsWithValues = new Array(12).fill(0);
 
-  for (const month of monthsWithValues) {
-    monthsWithValues[month] = 0;
-  }
-
   for (const bill of bills) {
     if (moment(bill.date).isSameOrBefore(oneYearAgo)) {
       continue;
